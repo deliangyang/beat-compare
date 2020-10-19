@@ -1,0 +1,6 @@
+/.idea
+/**/*.log
+/**/*.pyc
+test.csv
+/**/*.xls
+/**/artist.json
