@@ -102,7 +102,11 @@ def write_compare_result(spam_writer, ll, item):
         we_singer = __singers[we_singer]
     if we_singer in target:
         res = compare(we_song, target[we_singer])
-        spam_writer.writerow(item + res)
+        tmp = item
+        if len(res) > 0:
+            tmp += res
+            tmp[4] = str(tmp[6]).replace('-', '')
+        spam_writer.writerow(tmp)
     else:
         spam_writer.writerow([''] * ll)
 

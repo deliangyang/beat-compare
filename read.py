@@ -2,7 +2,7 @@ import xlrd
 import json
 from utils import replace
 
-wb = xlrd.open_workbook('/Users/ydl/Downloads/20200921152241.xlsx')
+wb = xlrd.open_workbook('data/20201020175406.xlsx')
 ws = wb.sheet_by_index(0)
 
 data = {}
