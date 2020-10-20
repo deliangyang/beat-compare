@@ -1,6 +1,5 @@
 import xlrd
 import json
-import pprint
 import difflib
 import csv
 from tqdm import tqdm
@@ -20,7 +19,6 @@ singers = target.keys()
 
 
 def compare(__song_name, __target) -> list:
-    # pprint.pprint(__target)
     percent = 0
     __item = []
     for tg in __target:
