@@ -1,6 +1,6 @@
 import re
 
-reg_replace = re.compile(r'(#|\?|\||\s|\t|-|\'|"|/| /|\(|\)|（|）|\.|_)')
+reg_replace = re.compile(r'(#|\?|\||\x20|\s|\t|-|\'|"|/| /|\(|\)|（|）|\.|_)')
 
 reg_dot_zero = re.compile(r'\.0$')
 

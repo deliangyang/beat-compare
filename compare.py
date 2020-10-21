@@ -53,20 +53,26 @@ def diff_singer():
     for item in get_items():
         beat, we_singer, we_song, da_j, work_code = item
         if we_singer in singers:
-            __singers[we_singer] = we_singer
+            __singers[we_singer] = [we_singer]
         if we_singer not in __singers:
-            __singers[we_singer] = __diff_singer(we_singer)
+            __singers[we_singer] = __diff_singer(replace(we_singer))
 
 
 def __diff_singer(we_singer):
     percent = 0
     __singer = ''
+    res = []
     for s in singers:
         __percent = difflib.SequenceMatcher(None, we_singer, s).quick_ratio()
+        if s.startswith(we_singer) or we_singer.startswith(s) \
+                or we_singer.endswith(s) or s.endswith(we_singer):
+            res.append(s)
         if percent < __percent:
             percent = __percent
             __singer = s
-    return __singer
+    if len(__singer) > 0:
+        res.append(__singer)
+    return res
 
 
 def diff_song():
@@ -98,6 +104,8 @@ def diff_song():
 def write_compare_result(spam_writer, ll, item):
     beat, we_singer, we_song, da_j, work_code = item
     # print((beat, we_singer, we_song, da_j, work_code))
+    # if we_singer != '浜崎あゆみ':
+    #     return
     if we_singer in __singers:
         we_singer = __singers[we_singer]
     if we_singer in target:
@@ -105,7 +113,7 @@ def write_compare_result(spam_writer, ll, item):
         tmp = item
         if len(res) > 0:
             tmp += res
-            tmp[4] = str(tmp[6]).replace('-', '')
+            tmp[6] = str(tmp[4]).replace('-', '')
         spam_writer.writerow(tmp)
     else:
         spam_writer.writerow([''] * ll)
@@ -131,10 +139,12 @@ class ProcessCompare(threading.Thread):
 
 
 if __name__ == '__main__':
-    # diff_singer()
-    # with open('data/singer.json', 'w') as fw:
-    #     json.dump(__singers, fw)
-    with open('data/singer.json', 'r') as fr:
-        __singers = json.load(fr)
-    # pprint.pprint(__singers)
-    diff_song()
+    diff_singer()
+    import pprint
+    pprint.pprint(__singers)
+    with open('data/singer.json', 'w') as fw:
+        json.dump(__singers, fw)
+    # with open('data/singer.json', 'r') as fr:
+    #     __singers = json.load(fr)
+    # # pprint.pprint(__singers)
+    # diff_song()

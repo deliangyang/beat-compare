@@ -4,3 +4,9 @@
 test.csv
 /**/*.xls
 /**/artist.json
+/data/chromedriver
+/data/chromedriver_mac64.zip
+/data/c_*.txt
+/data/s_*.txt
+/data/chromedriver_linux64.zip
+/data/result/
