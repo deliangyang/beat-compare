@@ -10,3 +10,6 @@ test.csv
 /data/s_*.txt
 /data/chromedriver_linux64.zip
 /data/result/
+/**/*.csv
+/**/*.xlsx
+/data/a.json

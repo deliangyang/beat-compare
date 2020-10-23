@@ -1,6 +1,7 @@
 from selenium import webdriver
 import sys
 from selenium.webdriver.chrome.options import Options
+import time
 
 
 def agree():
@@ -42,7 +43,7 @@ def search(beat, song, singer):
         driver.back()
     if not str(driver.current_url).startswith('https://search.nex-tone.co.jp/condition'):
         driver.get('https://search.nex-tone.co.jp/condition?11')
-
+    time.sleep(.2)
 
 # driver.close()
 
