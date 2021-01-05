@@ -48,3 +48,13 @@ def replace_dot_zero(s, s2):
     if len(str(s)) <= 0:
         s = str(s2)
     return reg_dot_zero.sub('', str(s))
+
+
+if __name__ == '__main__':
+    import json
+
+    a = list[int]
+    a.append(3)
+
+    print(a.append([2, 3]))
+    print(json.dumps(a))
